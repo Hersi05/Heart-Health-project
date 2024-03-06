@@ -16,33 +16,33 @@ select avg(age) As Average_Age from heart_health;
 select name from heart_health
 where 'HeartAttack' = 1;
 
-			--- The name and weights of individuals who are smokers and have high cholesterol 
+			--- Smokers with High Cholesterol
             
 select name, Weight from heart_health
 where Smoker = 'yes' AND Cholesterol > 200;
 
-			--- the names and heights of individuals who are females and exercise less than 3 hours per week
+			--- Females with Low Exercise Hours
             
 select name, height from heart_health
 where Gender = 'female' and Exercise < 3;
 			
-            --- the names and average cholesterol levels for each gender
+            --- Average Cholesterol Levels by Gender
 
 select gender, avg(cholesterol) AS Average_cholesterol
 from heart_health
 group by Gender;
 
-			--- Th name of individual who have body mass index(BMI) above 25. BMI is calculated as Weight/height
+			--- Individuals with Body Mass Index (BMI) above 25: BMI is calculated as Weight/height. BMI is calculated as Weight/height
 
 select name from heart_health
 where (weight / ((height / 100) * (height / 100))) > 25;
 
-			--- Th total name of individual who have body mass index(BMI) above 25. BMI is calculated as Weight/height
+			--- Total Individuals with BMI above 25. BMI is calculated as Weight/height
             
 select count(name) from heart_health
 where (weight / ((height / 100) * (height / 100))) > 25;
 
-			--- The name of individual who have the hightest glucose among female and male
+			--- Individuals with Highest Glucose Levels by Gender
             
 select name from heart_health
 where Gender = 'female'
@@ -54,7 +54,7 @@ where Gender = 'male'
 order by Glucose desc
 limit 1;
              
-             --- The name of individual are smokers, have high cholesterol over 200 or high glucose over 150
+             --- Smokers with High Cholesterol or High Glucose
 
 select  distinct name, age from heart_health
 where Smoker = 'yes' and (Cholesterol > 200 or glucose > 150)
